@@ -1,5 +1,7 @@
 #!/usr/bin/env bash 
 
+# syntax: sudo run_es &
+
 # This script will check to see if elasticsearch is installed in
 # the '/usr' directory, and if it is, it will start it up.
 
