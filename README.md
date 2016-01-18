@@ -1,9 +1,3 @@
-# Simple Todo List
+#Adding ElasticSearch to an Existing Application
 
-The Meteor Tutorial app.
-
-Use it to share a single todo list with your friends. The list updates on everyone's screen in real time, and you can make tasks private if you don't want others to see them.
-
-Learn how to build this app by following the [Meteor Tutorial](http://www.meteor.com/install).
-
-![screenshot](screenshot.png)
+Here are project assets to help you get started adding ElasticSearch to your extant Meteor application. The top-level directory structure has the application in "simple-todos" and setup scripts in the "scripts" directory.
