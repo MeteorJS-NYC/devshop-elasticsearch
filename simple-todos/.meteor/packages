@@ -8,3 +8,4 @@ meteor-platform
 accounts-ui
 accounts-password
 alanning:elasticsearch
+reactive-var

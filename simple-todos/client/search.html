@@ -1,0 +1,12 @@
+<template name="search">
+  <div id='search' class="container">
+    <input type='text' placeholder="Search users" id="search-box"/>
+    <h4>Result ({{entryCount}} entries)</h4>
+    <ul>
+      {{#each entries}}
+        <li>{{username}} - {{profile.phoneNo}}</li>
+      {{/each}}
+    </ul>
+    <hr />
+  </div>
+</template>
