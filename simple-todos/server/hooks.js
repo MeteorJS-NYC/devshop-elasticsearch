@@ -16,13 +16,23 @@ var ES = new ElasticSearch({
 // insert
 //
 Meteor.users.insert = function (doc) {
-  console.log("[Meteor.users.insert.hook]", doc)
+  console.log("[Meteor.users.insert.hook]", doc);
 
-  _insert.call(this, doc)
+  try {
+    _insert.call(this, doc);
 
-  ES.insert(doc, {fieldsToInclude: FIELDS_TO_INCLUDE});
+    try {
+      ES.insert(doc, {fieldsToInclude: FIELDS_TO_INCLUDE});
+    } catch (ex) {
+      console.log("[Meteor.users.insert.hook] ElasticSearch Error: ", ex);
+    }
 
-  console.log("[Meteor.users.insert.hook] ...important third-party REST call");
+    console.log("[Meteor.users.insert.hook] ...important third-party REST call");
+
+  } catch (ex) {
+    console.log("[Meteor.users.insert.hook] MongoDB Error: ", ex);
+    throw ex;
+  }
 };
 
 
@@ -31,17 +41,27 @@ Meteor.users.insert = function (doc) {
 // update
 //
 Meteor.users.update = function (selector, mutator, options) {
-  console.log("[Meteor.users.update.hook]", selector, mutator, options)
+  console.log("[Meteor.users.update.hook]", selector, mutator, options);
 
-  _update.call(this, selector, mutator, options)
+  try {
+    _update.call(this, selector, mutator, options);
 
-  updateUsersInElasticSearch(selector, mutator, options)
+    try {
+      updateUsersInElasticSearch(selector, mutator, options);
+    } catch (ex) {
+      console.log("[Meteor.users.update.hook] ElasticSearch Error: ", ex);
+    }
 
-  console.log("[Meteor.users.update.hook] ...important third-party REST call");
+    console.log("[Meteor.users.update.hook] ...important third-party REST call");
+
+  } catch (ex) {
+    console.log("[Meteor.users.update.hook] MongoDB Error: ", ex);
+    throw ex;
+  }
 };
 
 function updateUsersInElasticSearch (selector, mutator, options) {
-  options = options || {}
+  options = options || {};
 
   options.fieldsToInclude = FIELDS_TO_INCLUDE;
   options.sourceCollection = Meteor.users;
