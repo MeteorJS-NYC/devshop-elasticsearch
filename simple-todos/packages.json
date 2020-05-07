@@ -1,0 +1,4 @@
+{
+  "faker": "1.0.0",
+  "elasticsearch" : "3.0.2"
+}
